@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset="utf-8" />
+    <title>Stopwatch Online</title>
+    <link rel='stylesheet' href='css/main.css' />
+    <link href="https://fonts.googleapis.com/css?family=Mukta+Malar:400,700" rel="stylesheet">
+    <script src='scripts/time.js'></script>
+  </head>
+  <body>
+    <div class='cntr'>
+      <div class='header'>
+        <div class='pride-line'></div>
+        <div class='logo-cntr'>
+          <div class='logo-cntr-inner'>
+            <div id='ac-logo'>
+              <a href='index.html'>Stopwatch Online</a>
+            </div>
+          </div>
+        </div>
+        <div class='time-cntr'>
+          <div class='time-cntr-inner'>
+            <div id='ac-time'></div>
+          </div>
+        </div>
+      </div>
+      <div class='main'>
+        <div class='info-cntr'>
+          a
+        </div>
+        <div class='sw-cntr'>
+          <div class='sw-circle'>
+            <input type='button' value='START' class='start-btn' id='s-s' onclick="start();">
+            <div id='stopwatch' class='stopwatch'>00:00:00:00</div>
+            <input type='button' value='LAP' class='lap-btn' id='lap' onclick="lap();" disabled>
+            <input type='button' value='PAUSE' class='pause-btn' id='pause' onclick="pause();" disabled>
+          </div>
+        </div>
+        <div class='recent-cntr'>
+          b
+        </div>
+      </div>
+      <div class='footer'>
+
+      </div>
+    </div>
+  </body>
+</html>
