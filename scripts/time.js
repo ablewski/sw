@@ -21,18 +21,26 @@ function endTime(){
 }
 
 var hsw = msw = ssw = 0,
-    ms = 1,
-    swInterval;
+    ms = whichList = whichLine = 1,
+    swInterval,
+    el;
 
 function clearVars(){
   hsw = msw = ssw = 0;
-  ms = 1;
+  ms = 0;
+}
+
+function setAttrs(el, attrs){
+  for(var key in attrs){
+    el.setAttribute(key, attrs[key]);
+  }
 }
 
 function start(){
-  document.getElementById('s-s').setAttribute('class', 'stop-btn');
-  document.getElementById('s-s').setAttribute('onclick', 'stop();');
-  document.getElementById('s-s').setAttribute('value', 'STOP');
+  var whatIsIt = "start";
+  makeHistory(whatIsIt);
+  el = document.getElementById('s-s');
+  setAttrs(el, {"class":"stop-btn", "onclick":"stop();", "value":"STOP"});
   swInterval = setInterval(function sw(){
     if(ms == 100){
       ms = 0;
@@ -53,6 +61,7 @@ function start(){
     document.getElementById('stopwatch').innerHTML = hsw+":"+msw+":"+ssw+":"+ms;
     ms++;
   }, 10)
+
   document.getElementById('pause').disabled = false;
   document.getElementById('lap').disabled = false;
 }
@@ -60,37 +69,54 @@ function start(){
 function stop(){
   clearInterval(swInterval);
   clearVars();
-  document.getElementById('s-s').setAttribute('class', 'start-btn');
-  document.getElementById('s-s').setAttribute('onclick', 'start();');
-  document.getElementById('s-s').setAttribute('value', 'START');
+  el = document.getElementById('s-s');
+  setAttrs(el, {"class":"start-btn", "onclick":"start();", "value":"START"});
   document.getElementById('pause').disabled = true;
   document.getElementById('lap').disabled = true;
-  document.getElementById('pause').setAttribute('class', 'pause-btn');
-  document.getElementById('pause').setAttribute('onclick', 'pause();');
-  document.getElementById('pause').setAttribute('value', 'PAUSE');
+  el = document.getElementById('pause');
+  setAttrs(el, {"class":"pause-btn", "onclick":"pause();", "value":"PAUSE"});
 }
 
 function resume(){
   start();
-  document.getElementById('pause').setAttribute('class', 'pause-btn');
-  document.getElementById('pause').setAttribute('onclick', 'pause();');
-  document.getElementById('pause').setAttribute('value', 'PAUSE');
+  var el = document.getElementById('pause');
+  setAttrs(el, {"class":"pause-btn", "onclick":"pause();", "value":"PAUSE"});
   document.getElementById('lap').disabled = false;
 }
 
 function pause(){
   clearInterval(swInterval);
-  document.getElementById('pause').setAttribute('class', 'resume-btn');
-  document.getElementById('pause').setAttribute('onclick', 'resume();');
-  document.getElementById('pause').setAttribute('value', 'RESUME');
+  el = document.getElementById('pause');
+  setAttrs(el, {"class":"resume-btn", "onclick":"resume();", "value":"RESUME"});
   document.getElementById('lap').disabled = true;
 }
 
-function lap(){
+var whichLap=1;
 
+function lap(){
+  var whatIsIt = "lap no. "+whichLap;
+  makeHistory(whatIsIt);
+  whichLap++;
 }
 
 function checkZero(i){
   i = ('0' + i).slice(-2);
   return i;
+}
+
+function reset(){
+  var listC = document.getElementById('list-cntr');
+  listC.innerHTML = "<ol id='list1'></ol>";
+}
+
+function makeHistory(whatIsIt){
+  ms = checkZero(ms);
+  ssw = checkZero(ssw);
+  msw = checkZero(msw);
+  hsw = checkZero(hsw);
+  var listLine = document.createElement("LI");
+  document.getElementById('list1').appendChild(listLine);
+  listLine.setAttribute("id", "listLine"+whichLine);
+  document.getElementById('listLine'+whichLine).innerHTML = hsw+":"+msw+":"+ssw+":"+ms+" "+whatIsIt;
+  whichLine++;
 }
