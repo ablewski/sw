@@ -9,6 +9,9 @@ body{
   display: flex;
   flex-direction: column;
 }
+.number-font{
+  font-family: 'Roboto Mono', monospace;
+}
 .cntr{
   flex: 1;
 }
@@ -117,10 +120,11 @@ body{
   background-color: #cecece;
 }
 .recent-cntr{
-  background-color: green;
+  border: 2px solid #000000;
   height: 38.8vw;
   width: 24vw;
   float: right;
+  overflow: auto;
 }
 .info-cntr{
   border: 1px solid #000000;
@@ -186,9 +190,9 @@ body{
 .stopwatch{
   vertical-align: middle;
   line-height: normal;
-  font-size: 4.2vw;
+  font-size: 3vw;
   font-weight: 700;
-  margin: -1vw;
+
 }
 .lap-btn{
   display: block;
@@ -293,6 +297,13 @@ a:visited{
   height: 3vw;
   background-color: red;
 }
+.recent-header{
+  border-bottom: 1px solid #000000;
+  height: 3vw;
+  font-size: 2vw;
+  text-align: center;
+  background-color: #cecece;
+}
 .reset-cntr{
   border-bottom: 1px solid #000000;
   height: 3vw;
@@ -302,7 +313,22 @@ a:visited{
   height: 2vw;
   margin-top: 0.5vw;
   width: 18vw;
+  border: none;
+  border-radius: 90px;
+  font-size: 1.5vw;
+  font-weight: 700;
+  color: #ffffff;
+  cursor: pointer;
+  background-color: #000000;
+  transition-duration: 500ms;
+  transition-property: -webkit-box-shadow,-moz-box-shadow,box-shadow;
+}
+#reset-btn:hover{
+  -webkit-box-shadow: 0px 0px 10px 1px rgba(0,0,0,1);
+  -moz-box-shadow: 0px 0px 10px 1px rgba(0,0,0,1);
+  box-shadow: 0px 0px 10px 1px rgba(0,0,0,1);
 }
 li{
   list-style:upper-roman;
+  margin-left: 2vw;
 }
