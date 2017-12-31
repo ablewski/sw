@@ -3,6 +3,7 @@ window.onload = setInterval(function ac_time(){
   var h = d.getHours();
   var m = d.getMinutes();
   var s = d.getSeconds();
+  h = checkZero(h);
   m = checkZero(m);
   s = checkZero(s);
   document.getElementById('ac-time').innerHTML = h+":"+m+":"+s;
@@ -21,7 +22,7 @@ function endTime(){
 }
 
 var hsw = msw = ssw = 0,
-    ms = whichList = whichLine = 1,
+    ms = whichList = whichLine = crcNb = 1,
     swInterval,
     el;
 
@@ -37,8 +38,6 @@ function setAttrs(el, attrs){
 }
 
 function start(){
-  var whatIsIt = "start";
-  makeHistory(whatIsIt);
   el = document.getElementById('s-s');
   setAttrs(el, {"class":"stop-btn", "onclick":"stop();", "value":"STOP"});
   swInterval = setInterval(function sw(){
@@ -68,13 +67,21 @@ function start(){
 
 function stop(){
   clearInterval(swInterval);
-  clearVars();
   el = document.getElementById('s-s');
   setAttrs(el, {"class":"start-btn", "onclick":"start();", "value":"START"});
   document.getElementById('pause').disabled = true;
   document.getElementById('lap').disabled = true;
   el = document.getElementById('pause');
   setAttrs(el, {"class":"pause-btn", "onclick":"pause();", "value":"PAUSE"});
+  var crc = document.createElement("H3");
+  document.getElementById('list'+whichList).appendChild(crc);
+  crc.innerHTML = "--End of circuit no. "+crcNb+"--";
+  whichList++;
+  var nUl = document.createElement("UL");
+  document.getElementById('list-cntr').appendChild(nUl);
+  nUl.setAttribute("id", "list"+whichList);
+  crcNb++;
+  clearVars();
 }
 
 function resume(){
@@ -91,12 +98,16 @@ function pause(){
   document.getElementById('lap').disabled = true;
 }
 
-var whichLap=1;
-
 function lap(){
-  var whatIsIt = "lap no. "+whichLap;
-  makeHistory(whatIsIt);
-  whichLap++;
+  ms = checkZero(ms);
+  ssw = checkZero(ssw);
+  msw = checkZero(msw);
+  hsw = checkZero(hsw);
+  var listLine = document.createElement("LI");
+  document.getElementById('list'+whichList).appendChild(listLine);
+  listLine.setAttribute("id", "listLine"+whichLine);
+  document.getElementById('listLine'+whichLine).innerHTML = hsw+":"+msw+":"+ssw+":"+ms;
+  whichLine++;
 }
 
 function checkZero(i){
@@ -106,17 +117,6 @@ function checkZero(i){
 
 function reset(){
   var listC = document.getElementById('list-cntr');
-  listC.innerHTML = "<ol id='list1'></ol>";
-}
-
-function makeHistory(whatIsIt){
-  ms = checkZero(ms);
-  ssw = checkZero(ssw);
-  msw = checkZero(msw);
-  hsw = checkZero(hsw);
-  var listLine = document.createElement("LI");
-  document.getElementById('list1').appendChild(listLine);
-  listLine.setAttribute("id", "listLine"+whichLine);
-  document.getElementById('listLine'+whichLine).innerHTML = hsw+":"+msw+":"+ssw+":"+ms+" "+whatIsIt;
-  whichLine++;
+  listC.innerHTML = "<ul id='list1'></ul>";
+  whichLine = crcNb = whichList = 1;
 }
