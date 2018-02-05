@@ -92,8 +92,7 @@ body{
   width: 80vw;
   margin: 0 auto;
 }
-
-.info-cntr, .sw-cntr, .recent-cntr{
+.sw-cntr, .r-cntr{
   width: 26.6vw;
   margin-top: 30px;
   float: left;
@@ -119,17 +118,13 @@ body{
   border-color: #0033ff;
   background-color: #cecece;
 }
-.recent-cntr{
+.r-cntr{
   border: 2px solid #000000;
   height: 38.8vw;
   width: 24vw;
   float: right;
   overflow: auto;
-}
-.info-cntr{
-  border: 1px solid #000000;
-  height: 38.8vw;
-  width: 24vw;
+  margin-top: 10px;
 }
 .start-btn{
   display:block;
@@ -225,11 +220,11 @@ input[type="button"]{
 input[type="button"]::-moz-focus-inner {
    border: 0;
 }
-a{
+#ac-logo > a{
   text-decoration: none;
   color: #ffffff;
 }
-a:visited{
+#ac-logo > a:visited{
   text-decoration: none;
   color: #ffffff;
 }
@@ -237,14 +232,14 @@ a:visited{
   height: 3vw;
   background-color: red;
 }
-.recent-header{
+.r-header{
   border-bottom: 1px solid #000000;
   height: 3vw;
   font-size: 2vw;
   text-align: center;
   background-color: #cecece;
 }
-.reset-cntr{
+.re-cntr{
   border-bottom: 1px solid #000000;
   height: 3vw; 
   text-align: center;
@@ -268,7 +263,7 @@ a:visited{
   -moz-box-shadow: 0px 0px 10px 1px rgba(0,0,0,1);
   box-shadow: 0px 0px 10px 1px rgba(0,0,0,1);
 }
-li{
+#list-cntr > li{
   list-style:upper-roman;
   margin-left: 2vw;
 }
@@ -286,3 +281,23 @@ li{
   -moz-box-shadow: 0px 0px 10px 1px rgba(0,0,0,1);
   box-shadow: 0px 0px 10px 1px rgba(0,0,0,1);
 }
+.list-cntr{
+  color: #000000;
+  text-align: left;
+}
+.p-list{
+  list-style: none;
+  font-size: 2vw;
+}
+.p-list > a{
+  color: #000000;
+  text-decoration: none;
+}
+.p-list > a:visited{
+  color: #000000;
+  text-decoration: none;
+}
+.p-list > a:hover{
+  color: #4286f4;
+}
+

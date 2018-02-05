@@ -39,7 +39,7 @@ function setAttrs(el, attrs){
 
 function start(){
   el = document.getElementById('s-s');
-  setAttrs(el, {"class":"stop-btn", "onclick":"stop();", "value":"STOP"});
+  setAttrs(el, {"class":"stop-btn shad", "onclick":"stop();", "value":"STOP"});
   swInterval = setInterval(function sw(){
     if(ms == 100){
       ms = 0;
@@ -68,11 +68,11 @@ function start(){
 function stop(){
   clearInterval(swInterval);
   el = document.getElementById('s-s');
-  setAttrs(el, {"class":"start-btn", "onclick":"start();", "value":"START"});
+  setAttrs(el, {"class":"start-btn shad", "onclick":"start();", "value":"START"});
   document.getElementById('pause').disabled = true;
   document.getElementById('lap').disabled = true;
   el = document.getElementById('pause');
-  setAttrs(el, {"class":"pause-btn", "onclick":"pause();", "value":"PAUSE"});
+  setAttrs(el, {"class":"pause-btn shad", "onclick":"pause();", "value":"PAUSE"});
   var crc = document.createElement("H3");
   document.getElementById('list'+whichList).appendChild(crc);
   crc.innerHTML = "--End of circuit no. "+crcNb+"--";
@@ -87,14 +87,14 @@ function stop(){
 function resume(){
   start();
   var el = document.getElementById('pause');
-  setAttrs(el, {"class":"pause-btn", "onclick":"pause();", "value":"PAUSE"});
+  setAttrs(el, {"class":"pause-btn shad", "onclick":"pause();", "value":"PAUSE"});
   document.getElementById('lap').disabled = false;
 }
 
 function pause(){
   clearInterval(swInterval);
   el = document.getElementById('pause');
-  setAttrs(el, {"class":"resume-btn", "onclick":"resume();", "value":"RESUME"});
+  setAttrs(el, {"class":"resume-btn shad", "onclick":"resume();", "value":"RESUME"});
   document.getElementById('lap').disabled = true;
 }
 
